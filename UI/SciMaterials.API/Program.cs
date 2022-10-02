@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http.Features;
 using SciMaterials.API.Data;
 using SciMaterials.API.Data.Interfaces;
 using SciMaterials.API.Helpers;
+using SciMaterials.API.Middleware;
 using SciMaterials.API.Services;
 using SciMaterials.API.Services.Interfaces;
 using SciMaterials.API.Services.Stores;
@@ -42,6 +43,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 app.MapControllers();
 
