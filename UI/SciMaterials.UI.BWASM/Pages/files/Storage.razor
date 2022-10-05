@@ -46,7 +46,7 @@
         //Elements = await httpClient.GetFromJsonAsync<List<Element>>("webapi/periodictable");
         Elements = Enumerable
             .Range(0, 20)
-            .Select(i => new Element() { Number = i, Molar = i, Sign = $"Sign {i}", Name = $"Name #{i}", Position = i });
+            .Select(i => new Element { Number = i, Molar = i, Sign = $"Sign {i}", Name = $"Name #{i}", Position = i });
     }
 
     private bool FilterFunc1(Element element) => FilterFunc(element, searchString1);

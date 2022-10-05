@@ -6,30 +6,19 @@ namespace SciMaterials.API.Data;
 
 public class FileInfoMemoryRepository : IFileRepository<Guid>
 {
-    private readonly ConcurrentDictionary<Guid, FileModel> _files = new();
-    public bool Add(FileModel model)
-        => _files.TryAdd(model.Id, model);
+    private readonly ConcurrentDictionary<Guid, FileModel> _Files = new();
 
-    public void Update(FileModel model)
-        => _files[model.Id] = model;
+    public bool Add(FileModel model) => _Files.TryAdd(model.Id, model);
 
-    public void AddOrUpdate(FileModel model)
-    {
-        _files.AddOrUpdate(
-            model.Id,
-            model,
-            (id, fileInfo) => fileInfo = model);
-    }
+    public void Update(FileModel model) => _Files[model.Id] = model;
 
-    public void Delete(Guid id)
-        => _files.Remove(id, out _);
+    public void AddOrUpdate(FileModel model) => _Files.AddOrUpdate(model.Id, model, (_, _) => model);
 
-    public FileModel? GetByHash(string hash)
-        => _files.Values.SingleOrDefault(item => item.Hash == hash);
+    public void Delete(Guid id) => _Files.Remove(id, out _);
 
-    public FileModel? GetById(Guid id)
-     => _files.GetValueOrDefault(id);
+    public FileModel? GetByHash(string hash) => _Files.Values.SingleOrDefault(item => item.Hash == hash);
 
-    public FileModel? GetByName(string fileName)
-        => _files.Values.SingleOrDefault(item => item.FileName == fileName);
+    public FileModel? GetById(Guid id) => _Files.GetValueOrDefault(id);
+
+    public FileModel? GetByName(string FileName) => _Files.Values.SingleOrDefault(item => item.FileName == FileName);
 }

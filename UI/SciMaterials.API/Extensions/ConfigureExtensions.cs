@@ -1,5 +1,5 @@
 namespace SciMaterials.API.Extensions;
 
-public static class ConfigurationExtensions
+internal static class ConfigurationExtensions
 {
 }

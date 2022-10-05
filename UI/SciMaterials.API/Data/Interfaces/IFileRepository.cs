@@ -10,5 +10,5 @@ public interface IFileRepository<T>
     void Delete(T id);
     FileModel? GetByHash(string hash);
     FileModel? GetById(T id);
-    FileModel? GetByName(string name);
+    FileModel? GetByName(string FileName);
 }

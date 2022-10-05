@@ -37,13 +37,13 @@ public class Program
         
         var app = builder.Build();
 
-        var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
+        var scope_factory = app.Services.GetRequiredService<IServiceScopeFactory>();
         
-        using (var scope = scopeFactory.CreateScope())
+        using (var scope = scope_factory.CreateScope())
         {
-            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
-            var rolesManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            await AuthDbInitializer.InitializeAsync(userManager, rolesManager, builder.Configuration);
+            var user_manager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+            var roles_manager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            await AuthDbInitializer.InitializeAsync(user_manager, roles_manager, builder.Configuration);
         }
 
         // Configure the HTTP request pipeline.

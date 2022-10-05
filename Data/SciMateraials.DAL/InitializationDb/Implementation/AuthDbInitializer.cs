@@ -34,7 +34,7 @@ public static class AuthDbInitializer
         //Супер админ
         if (await userManager.FindByNameAsync(super_admin_email) is null)
         {
-            var super_admin = new IdentityUser()
+            var super_admin = new IdentityUser
             {
                 Email = super_admin_email, 
                 UserName = super_admin_email

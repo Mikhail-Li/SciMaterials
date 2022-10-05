@@ -4,9 +4,13 @@ namespace SciMaterials.API.Services.Interfaces;
 
 public interface IFileStore
 {
-    Task<FileSaveResult> WriteAsync(string path, Stream stream, CancellationToken cancellationToken = default);
-    Task WriteMetadataAsync<T>(string path, T data, CancellationToken cancellationToken = default);
-    Stream OpenRead(string path);
-    Task<T> ReadMetadataAsync<T>(string path, CancellationToken cancellationToken = default);
-    void Delete(string path);
+    Task<FileSaveResult> WriteAsync(string FilePath, Stream stream, CancellationToken Cancel = default);
+    
+    Task WriteMetadataAsync<T>(string FilePath, T data, CancellationToken Cancel = default);
+    
+    Stream OpenRead(string FilePath);
+    
+    Task<T> ReadMetadataAsync<T>(string FilePath, CancellationToken Cancel = default);
+    
+    void Delete(string FilePath);
 }

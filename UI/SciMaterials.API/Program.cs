@@ -8,10 +8,10 @@ using SciMaterials.API.Services.Stores;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var maxFileSize = builder.Configuration.GetValue<long>("MaxFileSize");
-builder.WebHost.ConfigureKestrel(serverOptions =>
+var max_file_size = builder.Configuration.GetValue<long>("MaxFileSize");
+builder.WebHost.ConfigureKestrel(opt =>
 {
-    serverOptions.Limits.MaxRequestBodySize = maxFileSize;
+    opt.Limits.MaxRequestBodySize = max_file_size;
 });
 
 var services = builder.Services;
@@ -20,13 +20,13 @@ services.AddScoped<IFileStore, FileSystemStore>();
 services.AddSingleton<IFileRepository<Guid>, FileInfoMemoryRepository>();
 services.AddControllers();
 services.AddEndpointsApiExplorer();
-services.AddSwaggerGen(options =>
+services.AddSwaggerGen(opt =>
 {
-    options.OperationFilter<FileUploadFilter>();
+    opt.OperationFilter<FileUploadFilter>();
 });
-services.Configure<FormOptions>(options =>
+services.Configure<FormOptions>(opt =>
 {
-    options.MultipartBodyLengthLimit = maxFileSize;
+    opt.MultipartBodyLengthLimit = max_file_size;
 });
 
 

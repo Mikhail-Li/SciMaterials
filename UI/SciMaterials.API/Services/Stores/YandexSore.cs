@@ -7,27 +7,27 @@ namespace SciMaterials.API.Services.Stores;
 
 public class YandexSore : IFileStore
 {
-    public void Delete(string path)
+    public void Delete(string FilePath)
     {
         throw new NotImplementedException();
     }
 
-    public Stream OpenRead(string path)
+    public Stream OpenRead(string FilePath)
     {
         throw new NotImplementedException();
     }
 
-    public Task<T> ReadMetadataAsync<T>(string path, CancellationToken cancellationToken = default)
+    public Task<T> ReadMetadataAsync<T>(string FilePath, CancellationToken Cancel = default)
     {
         throw new NotImplementedException();
     }
 
-    public Task<FileSaveResult> WriteAsync(string path, Stream stream, CancellationToken cancellationToken = default)
+    public Task<FileSaveResult> WriteAsync(string FilePath, Stream stream, CancellationToken Cancel = default)
     {
         throw new NotImplementedException();
     }
 
-    public Task WriteMetadataAsync<T>(string path, T data, CancellationToken cancellationToken = default)
+    public Task WriteMetadataAsync<T>(string FilePath, T data, CancellationToken Cancel = default)
     {
         throw new NotImplementedException();
     }
