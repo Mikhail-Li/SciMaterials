@@ -1,11 +1,9 @@
-﻿#region usings
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SciMaterials.DAL.Contexts;
 using SciMaterials.DAL.InitializationDb.Implementation;
 using SciMaterials.DAL.InitializationDb.Interfaces;
-#endregion
 
 static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args)
     .ConfigureServices(ConfigureServices);
@@ -17,7 +15,7 @@ static void ConfigureServices(HostBuilderContext context, IServiceCollection ser
     services.AddTransient<IDbInitializer, DbInitializer>();
 }
 
-using IHost host = CreateHostBuilder(args).Build();
+using var host = CreateHostBuilder(args).Build();
 
 await using (var scope = host.Services.CreateAsyncScope())
 {

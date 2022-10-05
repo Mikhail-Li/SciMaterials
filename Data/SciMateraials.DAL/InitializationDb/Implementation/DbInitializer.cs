@@ -27,23 +27,23 @@ namespace SciMaterials.DAL.InitializationDb.Implementation
             }
             catch (OperationCanceledException e)
             {
-                _logger.LogError("Interrupting an operation when deleting a database", e.Message);
+                _logger.LogError("Interrupting an operation when deleting a database: {0}", e.Message);
                 throw;
             }
             catch (Exception e)
             {
-                _logger.LogError("Error during database initialization", e.Message);
+                _logger.LogError("Error during database initialization: {0}", e.Message);
                 throw;
             }
         }
 
-        public async Task InitializeDbAsync(bool removeAtStart = false, CancellationToken cancel = default)
+        public async Task InitializeDbAsync(bool RemoveAtStart = false, CancellationToken cancel = default)
         {
             cancel.ThrowIfCancellationRequested();
 
             try
             {
-                if (removeAtStart) await DeleteDbAsync(cancel).ConfigureAwait(false);
+                if (RemoveAtStart) await DeleteDbAsync(cancel).ConfigureAwait(false);
 
                 var pendingMigration = await _db.Database.GetPendingMigrationsAsync(cancel).ConfigureAwait(false);
 
@@ -56,12 +56,12 @@ namespace SciMaterials.DAL.InitializationDb.Implementation
             }
             catch (OperationCanceledException e)
             {
-                _logger.LogError("Interrupting an operation when deleting a database", e.Message);
+                _logger.LogError("Interrupting an operation when deleting a database: {0}", e.Message);
                 throw;
             }
             catch (Exception e)
             {
-                _logger.LogError("Error during database initialization", e.Message);
+                _logger.LogError("Error during database initialization: {0}", e.Message);
                 throw;
             }
         }

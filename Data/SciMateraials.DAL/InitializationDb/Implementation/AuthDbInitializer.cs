@@ -16,8 +16,8 @@ public static class AuthDbInitializer
         RoleManager<IdentityRole> roleManager,
         IConfiguration configuration)
     {
-        string superAdminEmail = configuration.GetSection("SuperAdminSettings:Login").Value;
-        string superAdminPassword = configuration.GetSection("SuperAdminSettings:Password").Value;
+        string super_admin_email = configuration.GetSection("SuperAdminSettings:Login").Value;
+        string super_admin_password = configuration.GetSection("SuperAdminSettings:Password").Value;
         
         //Роль админа
         if (await roleManager.FindByNameAsync("admin") is null)
@@ -32,19 +32,17 @@ public static class AuthDbInitializer
         }
         
         //Супер админ
-        if (await userManager.FindByNameAsync(superAdminEmail) is null)
+        if (await userManager.FindByNameAsync(super_admin_email) is null)
         {
-            var superAdmin = new IdentityUser()
+            var super_admin = new IdentityUser()
             {
-                Email = superAdminEmail, 
-                UserName = superAdminEmail
+                Email = super_admin_email, 
+                UserName = super_admin_email
             };
             
-            var identityResult = await userManager.CreateAsync(superAdmin, superAdminPassword);
-                
-            if (identityResult.Succeeded)
+            if (await userManager.CreateAsync(super_admin, super_admin_password) is { Succeeded: true })
             {
-                await userManager.AddToRoleAsync(superAdmin, "admin");
+                await userManager.AddToRoleAsync(super_admin, "admin");
             }
         }
     }
