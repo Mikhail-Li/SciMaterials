@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SciMateraials.DAL\SciMaterials.DAL.csproj" />
+    <ProjectReference Include="..\..\BuisnessLogic\SciMaterials.RepositoryLib\SciMaterials.RepositoryLib.csproj" />
+    <ProjectReference Include="..\SciMaterials.DAL\SciMaterials.DAL.csproj" />
   </ItemGroup>
 
 </Project>
